@@ -1,17 +1,35 @@
+// 해시로 구현
 #include <vector>
-#include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
-int solution(vector<int> nums)
+int solution(vector<int> nums) 
 {
-    int answer = nums.size() / 2;
+    unordered_map<int, int> hash;
     
-    sort(nums.begin(), nums.end());
-    nums.erase(unique(nums.begin(), nums.end()), nums.end());
+    for(auto num: nums) {
+        hash[num] +=1;
+    }
     
-    if(nums.size() < answer)
-        answer = nums.size();
-    
-    return answer;
+    return min(hash.size(), nums.size() / 2);
 }
+
+
+// #include <vector>
+// #include <algorithm>
+
+// using namespace std;
+
+// int solution(vector<int> nums)
+// {
+//     int answer = nums.size() / 2;
+    
+//     sort(nums.begin(), nums.end());
+//     nums.erase(unique(nums.begin(), nums.end()), nums.end());
+    
+//     if(nums.size() < answer)
+//         answer = nums.size();
+    
+//     return answer;
+// }
